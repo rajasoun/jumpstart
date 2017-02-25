@@ -56,7 +56,7 @@ module Orchestrator
       ansible.install_mode = 'default'
       ansible.version = '2.2'
       ansible.playbook = playbook
-      ansible.provisioning_path = '/ck/testdrive'
+      ansible.provisioning_path = '/ck/cheetah/jumpstart/'
       ansible.tmp_path = '/tmp/vagrant/ansible'
       ansible.raw_arguments  = '--vault-password-file=/secrets/.vault_pass'
       ansible.inventory_path = 'ansible/inventory/topology' # "ansible/inventory/vagrant.py"

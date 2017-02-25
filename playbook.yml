@@ -15,37 +15,30 @@
   tasks:
     - shell: bash -lc "hostname"
   roles:
-    - base
-    - ntp
-    - java
-    - maven
-    - ansible
-    - docker
-    - mmonit
-    - monit
+#    - base
+#    - ntp
+#    - java
+#    - maven
+#    - ansible
+#    - docker
+#    - mmonit
+#    - monit
+     - git-repository
 
-- hosts: cloud-vm
-  become: true
-  become_method: sudo
-  vars_files:
-    - ./environments/cloud-vm.yml
-  tasks:
-    - shell: bash -lc "hostname"
-  roles:
-    - base
-    - ntp
-    - java
-    - maven
-    - ansible
-    - docker
-    - mmonit
-    - monit
-
-#- hosts: web
+#- hosts: cloud-vm
 #  become: true
 #  become_method: sudo
 #  vars_files:
-#    - ./environments/web.yml
+#    - ./environments/cloud-vm.yml
+#  tasks:
+#    - shell: bash -lc "hostname"
 #  roles:
 #    - base
-#    - nginx
+#    - ntp
+#    - java
+#    - maven
+#    - ansible
+#    - docker
+#    - mmonit
+#    - monit
+#     - git-repository
