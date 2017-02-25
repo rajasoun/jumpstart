@@ -1,5 +1,5 @@
 # About
- **testdrive** helps developers to setup their development environment in a
+ **jumpstart** helps developers to setup their development environment in a
  common way  & deploy softwares using ansible roles
 
 ## Minimal requirements
