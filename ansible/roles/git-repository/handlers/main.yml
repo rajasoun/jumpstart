@@ -1,6 +1,4 @@
 ---
 
 - name: Build CK
-  debug:
-    msg: "System {{ inventory_hostname }} Received Build CK Trigger"
   command: "echo :: Execute Command To Build"

@@ -1,6 +1,37 @@
 ---
 
-- include: common.yml
+tools:
+  - rsync
+  - zsh
+  - curl
+  - python
+  - easy_install
+  - nmap
+  - git
+  - python-software-properties
+  - zsh
+  - wget
+  - tcpdump
+
+java_version: 8
+java_subversion: 102
+ntp_timezone: Asia/Kolkata
+
+
+mmonit_server_ip: '140.174.231.57'
+mmonit_server_hostname: 'dev.xkit.co'
+
+mmonit_ip: 10.10.10.6
+monit_services:
+  - name: dev.xkit.co
+    type: system
+    rules:
+      - "if loadavg (1min) > 2 then alert"
+      - "if loadavg (5min) > 2 then alert"
+      - "if memory usage > 75% then alert"
+      - "if cpu usage (user) > 70% for 8 cycles then alert"
+      - "if cpu usage (system) > 40% for 8 cycles then alert"
+      - "if cpu usage (wait) > 20%  for 8 cycles then alert"
 
 mysql_enabled_on_startup: yes
 mysql_port: "3306"
