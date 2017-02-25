@@ -1,26 +1,37 @@
 # Multi-Machine Vagrant Configurations
 
 playbook: "playbook.yml"
-env : ["web", "testdrive", "controller" ]
+
+env : ["vagrant-vm", "controller" ]
+#env : ["web", "testdrive", "controller" ]
+
 ck_workspace: "~/Workspace/ck"
 
-os : "minimal/centos6"
-#os : "minimal/trusty64"
+os : "minimal/trusty64"
+#os : "minimal/centos6"
 
-web:
-  name : web
-  network:
-    ip: 192.168.24.102
-    host: mars.learn.cisco
-
-testdrive:
-  name : testdrive
-  network:
-    ip: 192.168.24.101
-    host: testdrive.dev
 
 controller:
   name : controller
   network:
     ip: 192.168.24.100
     host: controller.dev
+
+vagrant-vm:
+  name : vagrant-vm
+  network:
+    ip: 192.168.24.101
+    host: vagrant-vm.dev
+
+#web:
+#  name : web
+#  network:
+#    ip: 192.168.24.102
+#    host: mars.learn.cisco
+
+#testdrive:
+#  name : testdrive
+#  network:
+#    ip: 192.168.24.101
+#    host: testdrive.dev
+
