@@ -1,0 +1,9 @@
+galaxy_info:
+  author: raja. S
+  description: An Ansible role to install Docker in Debian or Ubuntu oe CentOS
+  company: No NDA Inc.
+  license: BSD
+
+  min_ansible_version: 1.8
+
+dependencies: []

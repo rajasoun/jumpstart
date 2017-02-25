@@ -1,0 +1,33 @@
+---
+
+- name: Linux Setup
+  shell: echo "Linux Setup"
+
+- name: Prepare | Ubuntu Update apt-get
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Prepare | Ubuntu Update apt-get | Check Cache
+  stat: path=/var/cache/apt
+  register: apt_cache_stat
+
+- name: Prerequisites for Provisioning Utilities
+  apt: pkg={{ item }} state=installed
+  with_items:
+      - curl
+      - apt-transport-https
+      - python-setuptools
+
+- name: Install pip
+  easy_install: name=pip state=latest
+
+- name: Install Python Tools/ Utilities with pip
+  pip: name={{ item }} state=present
+  with_items:
+      - paramiko
+
+- name: Install Ansible with pip
+  pip: name=ansible version=2.2 state=present
+  become: true
+
+
+

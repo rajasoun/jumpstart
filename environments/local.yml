@@ -1,0 +1,7 @@
+---
+
+applications:
+  - vagrant
+  - virtualbox
+
+- include: common.yml

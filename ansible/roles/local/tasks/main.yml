@@ -1,0 +1,18 @@
+---
+
+- name: Include OS-specific variables.
+  include_vars: "{{ item }}"
+  with_first_found:
+    - ../vars/{{ ansible_os_family }}.yml
+
+# OS-specific installation
+
+- include: OSx.yml
+  when: ansible_os_family == 'Darwin'
+
+- include: Debian.yml
+  when: ansible_os_family == "Debian"
+
+## TODO: Fix ZSH Issue
+#- include: zsh.yml
+

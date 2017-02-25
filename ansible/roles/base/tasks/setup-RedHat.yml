@@ -1,0 +1,9 @@
+---
+# tasks file for tools
+- name: install common packages (git, unzip, curl, wget)
+  yum: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - curl
+    - git
+    - unzip
+    - wget

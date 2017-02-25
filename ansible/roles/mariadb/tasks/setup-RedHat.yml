@@ -1,0 +1,7 @@
+---
+# tasks file for tools
+- name: install mariadb_packages
+  yum: name={{ item }} update_cache=yes state=latest
+  state: installed
+  with_items: "{{ mariadb_packages }}"
+  tags: mariadb

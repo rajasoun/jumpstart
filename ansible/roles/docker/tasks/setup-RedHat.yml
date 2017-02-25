@@ -1,0 +1,39 @@
+---
+
+# tasks file for million12.docker
+- name: Add Docker Repository
+  copy: src=docker.repo dest=/etc/yum.repos.d/docker.repo
+
+- name: Install latest stable version
+  yum: name=docker-engine state=present
+
+- file:
+    path: /usr/lib/systemd/system
+    state: directory
+    mode: 0755
+
+- copy: src=docker.service dest=/usr/lib/systemd/system/docker.service
+
+# - name: bootstrap docker
+#   shell: curl -fsSL https://get.docker.com/ | sh
+
+- name: Install python setup tools
+  yum: name=python-setuptools
+  tags: docker
+
+-  name: Install Python pip
+   easy_install: name=pip
+   tags: docker
+
+- name: Install docker-compose
+  pip: name=docker-compose
+  tags: docker
+
+- name: Add docker.socket file
+  copy: src=docker.socket dest=/usr/lib/systemd/system/docker.socket
+
+- name: Making sure docker daemon is running.
+  service:
+    name: docker
+    enabled: yes
+    state: started

@@ -1,0 +1,73 @@
+---
+sudo: required
+dist: trusty
+
+language: python
+python: "2.7"
+
+env:
+  - SITE=test.yml ANSIBLE_VERSION=latest
+  - SITE=test.yml ANSIBLE_VERSION=2.1.0.0
+
+branches:
+  only:
+    - master
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y curl openssl
+
+install:
+  # Install Ansible.
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install --no-binary ansible ansible; else pip install --no-binary ansible ansible==$ANSIBLE_VERSION; fi
+
+  # Add ansible.cfg to pick up roles path.
+  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+
+  # Install ansible-lint
+  - pip install ansible-lint
+
+script:
+  # Check the role/playbook's syntax.
+  - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
+
+  # Run the role/playbook with ansible-playbook.
+  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --become"
+
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/$SITE --connection=local --become
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+
+  # ansible-lint checks for best practice
+  - ansible-lint tests/$SITE
+
+  - sudo service mmonit status | grep running
+  - echo exit | telnet localhost 2811 | grep 'Connected to localhost'
+
+  # Check if mmonit is reachable
+  - curl http://127.0.0.1:2811/
+
+  - test -e /opt/mmonit/bin/mmonit
+  - test -e /opt/mmonit/logs/mmonit.pid
+
+after_failure:
+  - ansible-playbook -i tests/inventory tests/$SITE --connection=local --become
+  - sudo service mmonit status
+  - sudo service mmonit start
+  - sudo service mmonit status
+  - ls -l /etc/.mmonit_installed
+  - ls -l /opt
+  - ls -l /opt/ansible-mmonit.sh
+  - ls -l /opt/mmonit/
+  - ls -l /opt/mmonit/bin
+  - sudo cat /opt/ansible-mmonit.sh
+  - sudo /opt/ansible-mmonit.sh
+  - sudo cat /opt/mmonit/conf/server.xml
+
+notifications:
+  slack: ambimax:2MlPTX9bY9aPxCPhJGxHKIT6
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+

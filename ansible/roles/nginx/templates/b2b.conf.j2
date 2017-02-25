@@ -1,0 +1,223 @@
+server {
+  listen 80;
+  server_name "{{ full_hostname }}";
+
+  location / {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+  }
+}
+
+server {
+  listen 443 ssl;
+  server_name {{ full_hostname }};
+
+  #ssl_certificate /etc/ssl/certs/xkit.co.crt;
+  #ssl_certificate_key /etc/ssl/certs/xkit.co.key;
+
+  client_max_body_size 100m;
+  large_client_header_buffers 4 32k;
+
+
+    location / {
+      root   /usr/share/nginx/knowledgecenter;
+      index  index.html;
+    }
+
+    location /index.html {
+      root /usr/share/nginx/knowledgecenter;
+      expires epoch;
+      add_header    Cache-Control  private;
+      add_header    Last-Modified  "";
+    }
+
+    location /knowledgecenter {
+      proxy_pass https://{{ full_hostname }};
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header Host {{ full_hostname }};
+      proxy_redirect http:// https://;
+      proxy_intercept_errors on;
+    }
+
+
+    location /knowledgecenter/branding/images{
+       root  /usr/share/nginx/knowledgecenter/assets/branding/defaults/images/;
+       rewrite ^/knowledgecenter/branding/images/(.*)$ /$1 break;
+    }
+
+    location /knowledgecenter/profiles {
+      root /var/lib/b2b/profiles;
+      autoindex on;
+    }
+
+
+  location /contentstore {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+  }
+
+  location /userpi {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+  }
+
+  location /cclom {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+  }
+
+  location /groups {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+  }
+
+  location /elasticsearch {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+
+  }
+
+  location /contentstore/static {
+    root /var/lib/b2b/uploadedFiles;
+  }
+
+  location /kibana {
+    root /opt/kibana/current;
+    autoindex on;
+  }
+
+  location /uploadedFiles {
+    root /usr/share/nginx;
+  }
+
+  location /kibana_elasticsearch {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+  }
+
+  # aka as-rest-api
+  location /asewrite {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+  }
+
+  # aka es-rest-api
+  location /aseread {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+  }
+
+  location /ase {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+  }
+
+  location /cloudlethttp {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+  }
+
+  location /cloudlet {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+
+  }
+  location /agentapp {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+
+  }
+
+
+  location /socket {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+
+  }
+
+  #For Moodle Admin
+  location /lms {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+  }
+
+  location /mycontentrepo {
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+  }
+
+  location /help {
+    root /usr/share/nginx;
+  }
+
+  location /jabber {
+    # TODO : change this for sandbox
+    proxy_pass https://{{ full_hostname }};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host {{ full_hostname }};
+    proxy_redirect http:// https://;
+  }
+
+}

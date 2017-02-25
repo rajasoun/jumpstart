@@ -1,0 +1,5 @@
+---
+
+## To Set /etc/hosts entry in Guest VM to Connect To The Cloud
+full_hostname: "t9-qa.xkit.co"
+ip_address: "140.174.231.213"

@@ -1,0 +1,6 @@
+
+- include: install.yml
+  tags: ['mmonit-install']
+
+- include: ssl.yml
+  tags: ['mmonit-ssl']

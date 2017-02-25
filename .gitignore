@@ -1,0 +1,9 @@
+.DS_Store
+*.retry
+
+.vault_pass
+.cache/
+.idea/
+.vagrant/
+tests/testinfra/__pycache__/
+dev_box.profile.out

@@ -1,0 +1,51 @@
+---
+
+- hosts: controller
+  become: true
+  become_method: sudo
+  tasks:
+    - shell: bash -lc "hostname"
+
+
+- hosts: vagrant-vm
+  become: true
+  become_method: sudo
+  vars_files:
+    - ./environments/vagrant-vm.yml
+  tasks:
+    - shell: bash -lc "hostname"
+  roles:
+    - base
+    - ntp
+    - java
+    - maven
+    - ansible
+    - docker
+    - mmonit
+    - monit
+
+- hosts: cloud-vm
+  become: true
+  become_method: sudo
+  vars_files:
+    - ./environments/cloud-vm.yml
+  tasks:
+    - shell: bash -lc "hostname"
+  roles:
+    - base
+    - ntp
+    - java
+    - maven
+    - ansible
+    - docker
+    - mmonit
+    - monit
+
+#- hosts: web
+#  become: true
+#  become_method: sudo
+#  vars_files:
+#    - ./environments/web.yml
+#  roles:
+#    - base
+#    - nginx

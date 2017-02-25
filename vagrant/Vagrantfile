@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# https://www.vagrantup.com/docs/vagrantfile/tips.html
+
+# Load in custom vagrant settings
+require "yaml"
+require File.join(File.dirname(__FILE__), "vagrant/lib/Orchestrator")
+
+settings = File.file?("vagrant/config.yml") ? YAML.load_file("vagrant/config.yml") : {}
+
+
+VAGRANTFILE_API_VERSION ||= "2".freeze
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+	ck_workspace = settings["ck_workspace"]
+	playbook = settings["playbook"]
+	env = settings["env"]
+	os = settings["os"]
+
+	Orchestrator.installPlugins
+	(0..env.length-1).each do |node|
+			name = settings[env[node]]["name"]
+			ip = settings[env[node]]["network"]["ip"]
+			hostname = settings[env[node]]["network"]["host"]
+
+			Orchestrator.createVM os, config
+			Orchestrator.syncFolder ck_workspace, config
+			Orchestrator.configureVM env[node],name,ip,hostname, ck_workspace, playbook, config
+  end
+end

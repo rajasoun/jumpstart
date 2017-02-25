@@ -1,0 +1,12 @@
+---
+
+- hosts: "{{ hosts_to_run }}"
+
+  become: true
+  become_method: sudo
+
+  vars_files:
+    - "./environments/{{ env }}.yml"
+
+  roles:
+    - "{{ role }}"

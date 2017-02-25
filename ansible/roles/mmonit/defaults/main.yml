@@ -1,0 +1,41 @@
+---
+
+mmonit_version: "3.6.2"
+mmonit_download_url: "https://mmonit.com/dist/mmonit-3.6.2-linux-x64.tar.gz"
+mmonit_download_checksum: "sha256:5e020e0effecc2ebd70e8f83f93b3c8f39cd72dd2baeb6ce12f6812831d86eb4" # Will be used in ansible 2.0+ later
+
+
+
+mmonit_server_ip: ''
+mmonit_server_hostname: 'localhost'
+mmonit_ssl_certificate: ''
+mmonit_ssl_certificate_key: ''
+
+mmonit_connectors:
+  - name: 'Default'
+    address: '*'
+    port: 2811
+    processors: 10
+
+#  - name: 'Secured'
+#    scheme: https
+#    address: '*'
+#    port: 8443
+#    processors: 10
+#    secure: true
+
+#mmonit_username: 'admin'
+#mmonit_password: 'swordfish'
+
+
+#mmonit_ansible_username: 'ansible'
+#mmonit_ansible_password: "{{ ansible_machine_id | hash('sha1') | hash('sha1') }}"
+
+mmonit_admin_username: 'admin'
+mmonit_admin_password: 'admin'
+
+mmonit_connector_username: 'monit'
+mmonit_connector_password: 'monit'
+
+
+#mmonit_ansible_password: "{{ ansible_machine_id | hash('sha1') }}"

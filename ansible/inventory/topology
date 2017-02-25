@@ -1,0 +1,6 @@
+local        ansible_connection=local
+
+### Private Key File Path is Of the Guest Controller Machine & Not the Host ###
+controller   ansible_connection=local
+vagrant-vm   ansible_ssh_host=192.168.24.101 ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/keys/private
+cloud-vm     ansible_ssh_host=140.174.231.57 ansible_ssh_user=rajasoun ansible_ssh_private_key_file=~/.ssh/id_rsa

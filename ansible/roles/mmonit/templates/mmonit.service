@@ -1,0 +1,14 @@
+[Unit]
+Description = Easy, proactive monitoring of Unix systems, network and cloud services
+After = network.target
+
+[Service]
+Type=forking
+ExecStart = {{ mmonit_executable }} -i
+ExecStop = {{ mmonit_executable }} stop
+#ExecReload = {{ mmonit_executable }} stop; {{ mmonit_executable }} start
+PIDFile = {{ mmonit_pid_file }}
+Restart = on-abnormal
+
+[Install]
+WantedBy = multi-user.target
