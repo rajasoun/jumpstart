@@ -7,3 +7,4 @@
 .vagrant/
 tests/testinfra/__pycache__/
 dev_box.profile.out
+.molecule

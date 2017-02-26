@@ -18,14 +18,14 @@ driver:
 
 docker:
   containers:
-    - name: molecule-test
+    - name: molecule-test-ubuntu
       image: ubuntu
       image_version: latest
       ansible_groups:
         - molecule
 
   containers:
-    - name: molecule-test
+    - name: molecule-test-centos
       image: centos
       image_version: latest
       ansible_groups:
