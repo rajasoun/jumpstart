@@ -4,7 +4,7 @@
   become: true
   become_method: sudo
 
-- hosts: molecule-test-ubuntu, molecule-test-centos, vagrant-vm
+- hosts: molecule-ubuntu
   become: true
   become_method: sudo
   vars_files:
