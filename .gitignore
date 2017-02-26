@@ -1,6 +1,6 @@
 .DS_Store
 *.retry
-
+ scripts/install.ps1
 .vault_pass
 .cache/
 .idea/
