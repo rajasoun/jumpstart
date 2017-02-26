@@ -1,0 +1,35 @@
+---
+
+ansible:
+  config_file: ~/Workspace/ck/cheetah/jumpstart/ansible.cfg
+  playbook: playbook.yml
+  verbose: vvvv
+  raw_ssh_args:
+     - -o UserKnownHostsFile=/dev/null
+     - -o IdentitiesOnly=yes
+     - -o ControlMaster=auto
+     - -o ControlPersist=60s
+
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+docker:
+  containers:
+    - name: molecule-test
+      image: ubuntu
+      image_version: latest
+      ansible_groups:
+        - molecule
+
+  containers:
+    - name: molecule-test
+      image: centos
+      image_version: latest
+      ansible_groups:
+        - molecule
+
+verifier:
+  name: testinfra
