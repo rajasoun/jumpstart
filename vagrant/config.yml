@@ -23,15 +23,4 @@ vagrant-vm:
     ip: 192.168.24.101
     host: vagrant-vm.dev
 
-#web:
-#  name : web
-#  network:
-#    ip: 192.168.24.102
-#    host: mars.learn.cisco
-
-#testdrive:
-#  name : testdrive
-#  network:
-#    ip: 192.168.24.101
-#    host: testdrive.dev
 
