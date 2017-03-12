@@ -32,12 +32,13 @@ monit_services:
       - "if cpu usage (user) > 70% for 8 cycles then alert"
       - "if cpu usage (system) > 40% for 8 cycles then alert"
       - "if cpu usage (wait) > 20%  for 8 cycles then alert"
-  - name: sshd
-    type: process
-    target: /var/run/sshd.pid
-    start: /usr/sbin/service sshd start
-    stop: /usr/sbin/service sshd stop
-    rules:
-        - "if failed port 22 protocol http then restart"
-        - "if 5 restarts within 5 cycles then timeout"
+
+#  - name: sshd
+#    type: process
+#    target: /var/run/sshd.pid
+#    start: /usr/sbin/service sshd start
+#    stop: /usr/sbin/service sshd stop
+#    rules:
+#        - "if failed port 22 protocol http then restart"
+#        - "if 5 restarts within 5 cycles then timeout"
         
