@@ -1,15 +1,5 @@
 ---
 
-tools:
-  - rsync
-  - zsh
-  - python
-  - easy_install
-  - nmap
-  - python-software-properties
-  - zsh
-  - tcpdump
-
 java_version: 8
 java_subversion: 102
 ntp_timezone: Asia/Kolkata
