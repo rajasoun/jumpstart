@@ -48,8 +48,8 @@
   easy_install: name=pip
   tags: docker
 
-- name: Install docker-py
-  pip: name=docker-py
+- name: Install docker
+  pip: name=docker
   tags: docker
 
 - name: Install docker-compose

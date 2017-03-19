@@ -4,7 +4,7 @@
   become: true
   become_method: sudo
 
-- hosts: molecule-ubuntu
+- hosts: vagrant-vm
   become: true
   become_method: sudo
   vars_files:
@@ -18,7 +18,6 @@
     - docker
     - mmonit
     - monit
-    - git-repository
 
 - hosts: cloud-vm
   become: true
@@ -34,4 +33,33 @@
     - docker
     - mmonit
     - monit
-    - git-repository
+        
+- hosts: molecule-ubuntu
+  become: true
+  become_method: sudo
+  vars_files:
+    - ./environments/vagrant-vm.yml
+  roles:
+    - base
+    - ntp
+    - java
+    - maven
+    - ansible
+    - docker
+    - mmonit
+    - monit
+
+- hosts: molecule-centos
+  become: true
+  become_method: sudo
+  vars_files:
+    - ./environments/vagrant-vm.yml
+  roles:
+    - base
+    - ntp
+    - java
+    - maven
+    - ansible
+    - docker
+    - mmonit
+    - monit

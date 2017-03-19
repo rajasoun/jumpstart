@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	playbook = settings["playbook"]
 	env = settings["env"]
 	os = settings["os"]
+  auto_update =  settings["auto_update"]
 
 	Orchestrator.installPlugins
 	(0..env.length-1).each do |node|
@@ -23,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			ip = settings[env[node]]["network"]["ip"]
 			hostname = settings[env[node]]["network"]["host"]
 
-			Orchestrator.createVM os, config
+			Orchestrator.createVM os, auto_update, config
 			Orchestrator.syncFolder ck_workspace, config
 			Orchestrator.configureVM env[node],name,ip,hostname, ck_workspace, playbook, config
   end

@@ -5,10 +5,11 @@ playbook: "playbook.yml"
 env : ["vagrant-vm", "controller" ]
 #env : ["web", "testdrive", "controller" ]
 
-ck_workspace: "~/Workspace/ck/cheetah"
+ck_workspace: "~/Workspace/ck/cheetah/jumpstart"
 
 os : "minimal/trusty64"
 #os : "minimal/centos6"
+auto_update : false
 
 
 controller:

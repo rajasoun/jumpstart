@@ -1,6 +1,6 @@
 ---
 # tasks file for apache-maven
-- name: Unarchive maven
+- name: Download & Unarchive maven
   unarchive:
     src: "http://www.apache.org/dist/maven/maven-{{ maven_major }}/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.tar.gz"
     dest: "{{maven_home_parent_directory}}"

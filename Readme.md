@@ -31,14 +31,14 @@ For user 'joe' the home folder on a Mac system is _/home/joe_
 For user 'mary' the home folder on a Windows is _C:\Users\mary_.
 
 ```sh
-mkdir -p ~/Workspace/ck
-cd ~/Workspace/ck
+mkdir -p ~/Workspace/ck/cheetah
+cd ~/Workspace/ck//cheetah
 ```
 
 ### Clone source repositories from  Git
 Navigate to the **ck** folder in a command/shell window and execute the following lines
 ```sh
-git clone https://github.com/rajasoun/testdrive.git
+git clone https://github.com/rajasoun/jumpstart.git
 git clone https://github.com/rajasoun/bats
 ```
 

@@ -18,12 +18,12 @@ java_subversion: 102
 ntp_timezone: Asia/Kolkata
 
 
-mmonit_server_ip: '140.174.231.57'
-mmonit_server_hostname: 'dev.xkit.co'
+mmonit_server_ip: '192.168.24.101'
+mmonit_server_hostname: 'vagrant-vm.dev'
 
-mmonit_ip: 10.10.10.6
+mmonit_ip: 192.168.24.101
 monit_services:
-  - name: dev.xkit.co
+  - name: vagrant-vm.dev
     type: system
     rules:
       - "if loadavg (1min) > 2 then alert"
@@ -32,6 +32,8 @@ monit_services:
       - "if cpu usage (user) > 70% for 8 cycles then alert"
       - "if cpu usage (system) > 40% for 8 cycles then alert"
       - "if cpu usage (wait) > 20%  for 8 cycles then alert"
+
+
 
 mysql_enabled_on_startup: yes
 mysql_port: "3306"

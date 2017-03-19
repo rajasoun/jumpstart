@@ -1,4 +1,0 @@
----
-
-- name: Build CK
-  command: "echo :: Execute Command To Build"
