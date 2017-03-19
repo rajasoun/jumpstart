@@ -25,9 +25,9 @@ function tearDown {
 
 setUp
 
-machine_name="testdrive"
+machine_name="vagrant-vm"
 check_status $machine_name
-
 testinfra -v --host=$machine_name --ansible-inventory=ansible/inventory/vagrant.py --connection=ansible tests/testinfra/test_machine.py
+
 
 trap tearDown EXIT
