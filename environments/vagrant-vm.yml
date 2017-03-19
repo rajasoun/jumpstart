@@ -3,14 +3,11 @@
 tools:
   - rsync
   - zsh
-  - curl
   - python
   - easy_install
   - nmap
-  - git
   - python-software-properties
   - zsh
-  - wget
   - tcpdump
 
 java_version: 8

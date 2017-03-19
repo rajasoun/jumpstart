@@ -1,5 +1,10 @@
 ---
 # tasks file for tools
+
+- name: Install Base Tools
+  homebrew: name={{ item }} state=present
+  with_items: tools
+
 - name: install common packages (git, unzip, curl, wget)
   apt: name={{ item }} update_cache=yes state=latest
   with_items:
