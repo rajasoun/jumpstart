@@ -8,25 +8,25 @@
 
 @test "Check VirtualBox Version is 5.1.14r112924" {
     run echo `VBoxManage --version`
-    [ $output = "5.1.14r112924" ]
+    [ $output = "5.1.18r114002" ]
 }  
 
 @test "Check Vagrant is Installed" {
     command -v vagrant
 }
 
-@test "Check Vagrant Version is 1.9.1" {
+@test "Check Vagrant Version is 1.9.2" {
     run echo  `vagrant --version` 
-    [ $output = "Vagrant 1.9.1" ]
+    [ $output = "Vagrant 1.9.2" ]
 }  
 
 @test "Check Git is Installed" {
     command -v git
 }
 
-@test "Check Git Version is 2.11.0" {
+@test "Check Git Version is 2.12.0" {
     run echo  `git --version` 
-    [ $output = "git version 2.11.0" ]
+    [ $output = "git version 2.12.0" ]
 } 
 
 @test "Check Java is Installed" {

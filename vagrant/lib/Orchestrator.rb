@@ -1,8 +1,15 @@
 module Orchestrator
   def self.installPlugins
-    required_plugins = %w(vagrant-vbguest vagrant-hostsupdater)
-    required_plugins.each do |plugin|
-      system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
+    if Vagrant::Util::Platform.windows? then
+      puts 'Vagrant On Windows'
+      puts '++++++++++++++++++'
+      puts 'Manually Add Host Entries'
+      puts '192.168.24.101  vagrant-vm.dev to  C:\WINDOWS\system32\drivers\etc\hosts as Admin'
+    else
+      required_plugins = %w(vagrant-vbguest vagrant-hostsupdater)
+      required_plugins.each do |plugin|
+        system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
+      end
     end
   end
 
