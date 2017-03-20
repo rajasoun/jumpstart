@@ -46,7 +46,7 @@
     - maven
     - ansible
     - docker
-    - mmonit
+#    - mmonit
     - monit
 
 - hosts: molecule-centos
@@ -61,5 +61,5 @@
     - maven
     - ansible
     - docker
-    - mmonit
+#    - mmonit
     - monit
