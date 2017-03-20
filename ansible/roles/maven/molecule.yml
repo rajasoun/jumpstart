@@ -1,0 +1,12 @@
+---
+ansible:
+  playbook: tests/test.yml
+
+docker:
+  containers:
+  - name: ansible-role-maven-ubuntu-trusty
+    image: ubuntu
+    image_version: '14.04'
+  - name: ansible-role-maven-centos-6
+    image: centos
+    image_version: '6'
