@@ -17,12 +17,12 @@ docker:
       image_version: latest
       ansible_groups:
         - molecule
-
-    - name: molecule-centos
-      image: centos
-      image_version: latest
-      ansible_groups:
-        - molecule
+#
+#    - name: molecule-centos
+#      image: centos
+#      image_version: latest
+#      ansible_groups:
+#        - molecule
         
 verifier:
   name: testinfra
