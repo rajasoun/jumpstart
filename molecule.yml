@@ -2,7 +2,7 @@
 
 ansible:
   config_file: ~/Workspace/ck/cheetah/jumpstart/ansible.cfg
-  vault_password_file: ~/Workspace/ck/cheetah/jumpstart/secrets/.vault_pass
+  #vault_password_file: ~/Workspace/ck/cheetah/jumpstart/secrets/.vault_pass
 
 dependency:
   name: galaxy
