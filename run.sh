@@ -6,7 +6,7 @@ ANSIBLE_VAULT_FILE=" --vault-password-file=./secrets/.vault_pass"
 LOG="> run.log 2>&1 &"
 
 ENV='vagrant-vm'
-roles=( base ntp java maven docker ansible mmonit monit git-repository)
+roles=( base ntp java maven docker ansible mmonit monit )
 for role in "${roles[@]}"
 do
   echo "Install $role"
@@ -15,7 +15,7 @@ do
 done
 
 ENV='cloud-vm'
-roles=( base ntp java maven docker ansible mmonit monit git-repository)
+roles=( base ntp java maven docker ansible mmonit monit )
 for role in "${roles[@]}"
 do
   echo "Install $role"
