@@ -4,7 +4,7 @@
   become: true
   become_method: sudo
   vars_files:
-    - ./environments/vagrant-vm.yml
+    - environments/vagrant-vm.yml
   roles:
     - base
     - ntp
@@ -19,7 +19,7 @@
   become: true
   become_method: sudo
   vars_files:
-    - ./environments/vagrant-vm.yml
+    - environments/vagrant-vm.yml
   roles:
     - base
     - ntp
