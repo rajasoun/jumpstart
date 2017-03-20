@@ -46,20 +46,20 @@
     - maven
     - ansible
     - docker
-#    - mmonit
+    - mmonit
     - monit
 
-#- hosts: molecule-centos
-#  become: true
-#  become_method: sudo
-#  vars_files:
-#    - ./environments/vagrant-vm.yml
-#  roles:
-#    - base
-#    - ntp
-#    - java
-#    - maven
-#    - ansible
-#    - docker
-#    - mmonit
-#    - monit
+- hosts: molecule-centos
+  become: true
+  become_method: sudo
+  vars_files:
+    - ./environments/vagrant-vm.yml
+  roles:
+    - base
+    - ntp
+    - java
+    - maven
+    - ansible
+    - docker
+    - mmonit
+    - monit
