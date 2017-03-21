@@ -9,6 +9,13 @@ mmonit_server_ip: '192.168.24.101'
 mmonit_server_hostname: 'vagrant-vm.dev'
 
 mmonit_ip: 192.168.24.101
+monit_webinterface_enabled: true
+monit_webinterface_port: 2812
+monit_webinterface_acl_rules:
+  - "0.0.0.0/0.0.0.0"
+  - "admin:monit"
+
+
 monit_services:
   - name: vagrant-vm.dev
     type: system

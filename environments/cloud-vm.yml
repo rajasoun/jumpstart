@@ -9,6 +9,12 @@ mmonit_server_ip: '140.174.231.57'
 mmonit_server_hostname: 'dev.xkit.co'
 
 mmonit_ip: 10.10.10.6
+monit_webinterface_enabled: true
+monit_webinterface_port: 2812
+monit_webinterface_acl_rules:
+  - "0.0.0.0/0.0.0.0"
+  - "admin:monit"
+  
 monit_services:
   - name: dev.xkit.co
     type: system
