@@ -4,7 +4,7 @@ williamyeh.oracle-java for Ansible Galaxy
 
 [![Build Status](https://travis-ci.org/William-Yeh/ansible-oracle-java.svg?branch=master)](https://travis-ci.org/William-Yeh/ansible-oracle-java) [![Circle CI](https://circleci.com/gh/William-Yeh/ansible-oracle-java.svg?style=shield)](https://circleci.com/gh/William-Yeh/ansible-oracle-java)
 
-## Summary
+## Summary.
 
 Role name in Ansible Galaxy: **[williamyeh.oracle-java](https://galaxy.ansible.com/williamyeh/oracle-java/)**
 
@@ -33,7 +33,7 @@ User-configurable defaults:
 java_version: 8
 
 # which subversion?
-java_subversion: 102
+java_subversion: 112
 
 # which directory to put the download file?
 java_download_path: /tmp
