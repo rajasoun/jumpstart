@@ -10,13 +10,13 @@
   vars_files:
     - ./environments/vagrant-vm.yml
   roles:
-#    - base
-#    - ntp
-#    - java
-#    - maven
-#    - ansible
-#    - docker
-#    - mmonit
+    - base
+    - ntp
+    - java
+    - maven
+    - ansible
+    - docker
+    - mmonit
     - monit
 
 - hosts: cloud-vm
