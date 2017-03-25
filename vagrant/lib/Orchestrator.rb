@@ -49,7 +49,7 @@ module Orchestrator
     #config.vm.synced_folder workspace, '/ck', type: "nfs", mount_options: ['ro', 'vers=3', 'tcp', 'fsc']
     config.vm.synced_folder workspace, '/ck', mount_options: ['dmode=0755,fmode=0644']
     config.vm.synced_folder "#{workspace}/jumpstart", '/jumpstart', mount_options: ['dmode=0755,fmode=0644']
-    config.vm.synced_folder "#{workspace}/ignitor", '/ignitor', mount_options: ['dmode=0755,fmode=0644']
+    config.vm.synced_folder "#{workspace}/ignitor", '/ignitor'
     config.vm.synced_folder 'secrets', '/secrets', mount_options: ['dmode=0755,fmode=0644']
     config.vm.synced_folder 'vagrant/keys', '/keys', mount_options: ['dmode=755,fmode=0400']
   end
