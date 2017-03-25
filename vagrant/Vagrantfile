@@ -19,12 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   auto_update =  settings["auto_update"]
 
 	Orchestrator.installPlugins
-
-	# Check If ck_workspace folder exists While bringing up the VM
-	config.trigger.before :up do
-		run "vagrant/pre-check.sh "
-  end
-
+  
 	(0..env.length-1).each do |node|
 			name = settings[env[node]]["name"]
 			ip = settings[env[node]]["network"]["ip"]

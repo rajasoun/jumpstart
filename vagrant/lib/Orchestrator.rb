@@ -45,8 +45,11 @@ module Orchestrator
 
   def self.syncFolder(workspace, config)
     config.vm.synced_folder '.', '/vagrant', disabled: true # Disable shared folders
-    config.vm.synced_folder workspace, '/ck', mount_options: ['dmode=0755,fmode=0644']
+    #:ToDo: Fix - Slow Swi
     #config.vm.synced_folder workspace, '/ck', type: "nfs", mount_options: ['ro', 'vers=3', 'tcp', 'fsc']
+    config.vm.synced_folder workspace, '/ck', mount_options: ['dmode=0755,fmode=0644']
+    config.vm.synced_folder "#{workspace}/jumpstart", '/jumpstart', mount_options: ['dmode=0755,fmode=0644']
+    config.vm.synced_folder "#{workspace}/ignitor", '/ignitor', mount_options: ['dmode=0755,fmode=0644']
     config.vm.synced_folder 'secrets', '/secrets', mount_options: ['dmode=0755,fmode=0644']
     config.vm.synced_folder 'vagrant/keys', '/keys', mount_options: ['dmode=755,fmode=0400']
   end
@@ -65,7 +68,7 @@ module Orchestrator
       ansible.install_mode = 'default'
       ansible.version = '2.2'
       ansible.playbook = playbook
-      ansible.provisioning_path = '/ck'
+      ansible.provisioning_path = '/ck/jumpstart'
       ansible.tmp_path = '/tmp/vagrant/ansible'
       ansible.raw_arguments  = '--vault-password-file=/secrets/.vault_pass'
       ansible.inventory_path = 'ansible/inventory/topology' # "ansible/inventory/vagrant.py"

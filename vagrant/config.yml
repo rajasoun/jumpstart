@@ -5,7 +5,7 @@ playbook: "playbook.yml"
 env : ["vagrant-vm", "controller" ]
 #env : ["web", "testdrive", "controller" ]
 
-ck_workspace: "~/Workspace/ck/cheetah"
+ck_workspace: "~/Workspace/ck1234"
 
 os : "minimal/trusty64"
 #os : "minimal/centos6"
