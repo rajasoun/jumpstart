@@ -1,6 +1,6 @@
 module Orchestrator
   def self.installPlugins
-    required_plugins = %w(vagrant-vbguest vagrant-triggers)
+    required_plugins = %w(vagrant-vbguest )
     if Vagrant::Util::Platform.windows? then
       puts 'Vagrant On Windows'
       puts '++++++++++++++++++'
