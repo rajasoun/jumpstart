@@ -45,7 +45,7 @@ module Orchestrator
 
   def self.syncFolder(workspace, config)
     config.vm.synced_folder '.', '/vagrant', disabled: true # Disable shared folders
-    #:ToDo: Fix - Slow Swi
+    #:ToDo: Fix - Slow Loading of Git Directory
     #config.vm.synced_folder workspace, '/ck', type: "nfs", mount_options: ['ro', 'vers=3', 'tcp', 'fsc']
     config.vm.synced_folder workspace, '/ck', mount_options: ['dmode=0755,fmode=0644']
     config.vm.synced_folder "#{workspace}/jumpstart", '/jumpstart', mount_options: ['dmode=0755,fmode=0644']
