@@ -24,25 +24,12 @@
     - docker
     - apt_cache
 
-- name: Purge the old repo if it exists
-  apt: name={{ item }} purge=yes
-  with_items:
-    - "docker.io*"
-  ignore_errors: yes
-  tags:
-    - docker
-    - apt_purge
-
 - name: Install docker package
   apt: name=docker-engine state=present
   notify: Start Docker
   tags:
     - docker
     - install
-
-- name: Install docker
-  pip: name=docker
-  tags: docker
 
 - name: Install docker-compose
   pip: name=docker-compose
