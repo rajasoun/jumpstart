@@ -17,14 +17,6 @@
 # - name: bootstrap docker
 #   shell: curl -fsSL https://get.docker.com/ | sh
 
-- name: Install python setup tools
-  yum: name=python-setuptools
-  tags: docker
-
--  name: Install Python pip
-   easy_install: name=pip
-   tags: docker
-
 - name: Install docker-compose
   pip: name=docker-compose
   tags: docker

@@ -40,14 +40,6 @@
     - docker
     - install
 
-- name: Install python setup tools
-  apt: name=python-setuptools state=present
-  tags: docker
-
-- name: Install Pypi
-  easy_install: name=pip
-  tags: docker
-
 - name: Install docker
   pip: name=docker
   tags: docker

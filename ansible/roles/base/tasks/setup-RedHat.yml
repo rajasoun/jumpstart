@@ -7,3 +7,13 @@
     - git
     - unzip
     - wget
+    - python-setuptools
+
+- name: Install pip
+  easy_install: name=pip
+
+- name: Install common Python packages (ansible-cmdb)
+  pip: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - ansible-cmdb  
+
