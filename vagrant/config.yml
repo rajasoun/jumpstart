@@ -9,7 +9,7 @@ ck_workspace: "~/Workspace/ck"
 
 os : "minimal/trusty64"
 #os : "minimal/centos6"
-auto_update : false
+auto_update : true
 
 
 controller:
