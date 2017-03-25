@@ -3,7 +3,7 @@
 playbook: "playbook.yml"
 
 env : ["vagrant-vm", "controller" ]
-#env : ["web", "testdrive", "controller" ]
+#env : ["web","vagrant-vm", "controller" ]
 
 ck_workspace: "~/Workspace/ck"
 
