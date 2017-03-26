@@ -1,6 +1,7 @@
 module Orchestrator
   def self.installPlugins
     required_plugins = %w(vagrant-vbguest )
+    #ToDo: Temporary Fix (Explore Better Host Updater Plugin For Windows)
     if Vagrant::Util::Platform.windows? then
       puts 'Vagrant On Windows'
       puts '++++++++++++++++++'
@@ -35,6 +36,7 @@ module Orchestrator
         node.customize ['modifyvm', :id, '--usb', 'off']
       end
       case env
+      #:ToDo: Refactor or Remove Web Configuration To make It a Framework
       when 'web'
         syncFolderForWeb workspace, instance
       when 'controller'
@@ -46,6 +48,8 @@ module Orchestrator
   def self.syncFolder(workspace, config)
     config.vm.synced_folder '.', '/vagrant', disabled: true # Disable shared folders
     #:ToDo: Fix - Slow Loading of Git Directory
+    #:ToDo: Externalize Mount Points To Make It a Better Framework
+
     #config.vm.synced_folder workspace, '/ck', type: "nfs", mount_options: ['ro', 'vers=3', 'tcp', 'fsc']
     config.vm.synced_folder workspace, '/ck', mount_options: ['dmode=0755,fmode=0644']
     config.vm.synced_folder "#{workspace}/jumpstart", '/jumpstart', mount_options: ['dmode=0755,fmode=0644']
@@ -68,6 +72,7 @@ module Orchestrator
       ansible.install_mode = 'default'
       ansible.version = '2.2'
       ansible.playbook = playbook
+      #:ToDo: Externalize as Config
       ansible.provisioning_path = '/ck/jumpstart'
       ansible.tmp_path = '/tmp/vagrant/ansible'
       ansible.raw_arguments  = '--vault-password-file=/secrets/.vault_pass'
