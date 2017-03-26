@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 exited_docker=$(docker ps -a -q -f status=exited | wc -l) 
 if [ "$exited_docker" -gt 0 ] ; then
 	docker rm -v $(docker ps -a -q -f status=exited)

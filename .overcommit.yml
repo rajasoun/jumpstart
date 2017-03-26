@@ -24,12 +24,6 @@ PreCommit:
   YamlSyntax:
     enabled: true
 
-  HardTabs:
-      enabled: true
-
-  TrailingWhitespace:
-    enabled: true
-
   MasterHooksMatch:
     enabled: true
     quiet: true
