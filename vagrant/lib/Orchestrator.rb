@@ -41,9 +41,6 @@ module Orchestrator
 
   def self.syncFolders(syncFolders,config)
     config.vm.synced_folder '.', '/vagrant', disabled: true # Disable shared folders
-    #:ToDo: Externalize Mount Points To Make It a Better Framework
-    #config.vm.synced_folder workspace, '/ck', type: "nfs", mount_options: ['ro', 'vers=3', 'tcp', 'fsc']
-    #config.vm.synced_folder workspace, '/ck', mount_options: ['dmode=0755,fmode=0644']
     if syncFolders
         syncFolders.each do |syncFolder|
           config.vm.synced_folder syncFolder['host'], syncFolder['guest']

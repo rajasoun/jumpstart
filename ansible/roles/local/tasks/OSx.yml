@@ -33,12 +33,6 @@
   homebrew: name={{ item }} state=present
   with_items: tools
 
-##:TODO Fix brew Cask Issue
-#- name: Install apps with brew-cask
-#  shell: brew cask install {{ item }} --appdir={{ application_dir }} --caskroom={{ caskroom_dir }}
-#  with_items: applications
-#  when: "item not in installed_applications.results|map(attribute='stdout')"
-
 - name: Install pip
   easy_install: name=pip state=latest
 
