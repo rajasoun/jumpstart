@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WORKSPACE="~/Workspace/ck/"
+WORKSPACE="$HOME/Workspace/ck"
 
 function setup_bats() {
     echo "Setting Up Bash Automation Test "
@@ -32,6 +32,7 @@ function setup_ops_tools(){
 function setUp {
   echo "[Setup]"
   echo "*******************"
+  cd $HOME
   mkdir -p $WORKSPACE
 }
 
