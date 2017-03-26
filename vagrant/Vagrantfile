@@ -12,11 +12,11 @@ settings = File.file?("vagrant/config.yml") ? YAML.load_file("vagrant/config.yml
 VAGRANTFILE_API_VERSION ||= "2".freeze
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-	ck_workspace = settings["ck_workspace"]
 	playbook = settings["playbook"]
 	env = settings["env"]
 	os = settings["os"]
   auto_update =  settings["auto_update"]
+	syncFolders = settings["syncFolders"]
 
 	Orchestrator.installPlugins
   
@@ -24,8 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			name = settings[env[node]]["name"]
 			ip = settings[env[node]]["network"]["ip"]
 			hostname = settings[env[node]]["network"]["host"]
-			syncFolders = settings[env[node]]["syncFolders"]
-      
+
 			Orchestrator.createVM os, auto_update, config
 			Orchestrator.configureVM name,ip,hostname, playbook, config
       Orchestrator.syncFolders syncFolders, config

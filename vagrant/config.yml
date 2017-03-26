@@ -5,13 +5,22 @@ playbook: "playbook.yml"
 env : ["vagrant-vm", "controller" ]
 #env : ["web","vagrant-vm", "controller" ]
 
-ck_workspace: "~/Workspace/ck"
+#ck_workspace: "~/Workspace/ck"
 
 os : "minimal/trusty64"
 #os : "minimal/centos6"
 auto_update : true
 
-
+syncFolders :
+  - host: vagrant/scripts
+    guest: /scripts
+  - host: ~/Workspace/ck
+    guest: /ck
+  - host: ~/Workspace/ck/jumpstart
+    guest: /jumpstart
+  - host: ~/Workspace/ck/ignitor
+    guest: /ignitor
+    
 controller:
   name : controller
   network:
@@ -23,13 +32,5 @@ vagrant-vm:
   network:
     ip: 192.168.24.101
     host: vagrant-vm.dev
-  syncFolders :
-    - host: vagrant/scripts
-      guest: /scripts
-    - host: ~/Workspace/ck
-      guest: /ck
-    - host: ~/Workspace/ck/jumpstart
-      guest: /jumpstart
-    - host: ~/Workspace/ck/ignitor
-      guest: /ignitor
+
         
