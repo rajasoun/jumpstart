@@ -21,9 +21,6 @@ PreCommit:
     required: false
     quiet: false
 
-  YamlSyntax:
-    enabled: true
-
   MasterHooksMatch:
     enabled: true
     quiet: true

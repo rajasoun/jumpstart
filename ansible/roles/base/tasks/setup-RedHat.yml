@@ -15,5 +15,4 @@
 - name: Install common Python packages (ansible-cmdb)
   pip: name={{ item }} state=latest
   with_items:
-    - ansible-cmdb  
-
+    - ansible-cmdb
