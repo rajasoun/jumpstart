@@ -10,15 +10,15 @@ The developer environment relies on the components shown below.
 This project is tested with the following versions see below.
 Your mileage may vary if you use different versions of the software below.
 
-| S.No | Software             | Version  | Description                |
-|:-----|:---------------------|:---------|:---------------------------|
-| 1    | [Oracle Virtual Box] | 5.1.14   | Virtualization platform    |
-| 2    | [Virtual Box Ext]    | 5.1.14   | Addition H/W support tools |
-| 3    | [Hashicorp Vagrant]  | 1.9.1    | Configuration              |
-| 4    | [Git CLI Client]     | 2.11.0   | SCM command line client    |
-| 5    | [JDK]                | 1.8.0_60 | Java runtime               |
-| 6    | [Maven]              | 3.3.9    | Java build tool            |
-| 7    | [Node.js]            | v6.9.4   | Javascript runtime         |
+| S.No | Software             | Version          | Description                |
+|:-----|:---------------------|:-----------------|:---------------------------|
+| 1    | [Oracle Virtual Box] | 5.1.18 r114002   | Virtualization platform    |
+| 2    | [Virtual Box Ext]    | 5.1.18 r114002   | Addition H/W support tools |
+| 3    | [Hashicorp Vagrant]  | 1.9.2            | Configuration              |
+| 4    | [Git CLI Client]     | 2.12.0           | SCM command line client    |
+| 5    | [JDK]                | 1.8.0_102        | Java runtime               |
+| 6    | [Maven]              | 3.3.9            | Java build tool            |
+| 7    | [Node.js]            | v6.9.4           | Javascript runtime         |
 
 #### Workspace Setup
 The idea is to allow developers to store and edit source files on their system (Windows, Mac).
@@ -31,15 +31,7 @@ For user 'joe' the home folder on a Mac system is _/home/joe_
 For user 'mary' the home folder on a Windows is _C:\Users\mary_.
 
 ```sh
-mkdir -p ~/Workspace/ck/cheetah
-cd ~/Workspace/ck//cheetah
-```
-
-### Clone source repositories from  Git
-Navigate to the **ck** folder in a command/shell window and execute the following lines
-```sh
-git clone https://github.com/rajasoun/jumpstart.git
-git clone https://github.com/rajasoun/bats
+https://raw.githubusercontent.com/rajasoun/jumpstart/master/set-repo.sh
 ```
 
 ### Important: Windows Users only - setup base environment
@@ -138,9 +130,6 @@ ansible-vault decrypt provision/setup/files/b2b.conf --vault-password-file ./.va
 ansible-playbook -i local_inventory ansible/playbooks/laptop.setup.playbook.yml --check
 VBoxManage list vms
 ```
-
-## Nginx Monitoring Utilities
-[ngxtop](http://xmodulo.com/monitor-nginx-web-server-command-line-real-time.html)
 
 [Ember.js]: http://emberjs.com/
 [Oracle Virtual Box]: https://www.virtualbox.org/wiki/Downloads
