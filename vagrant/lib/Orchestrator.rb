@@ -1,7 +1,7 @@
 module Orchestrator
   def self.installPlugins
     required_plugins = %w(vagrant-vbguest )
-    #ToDo: Temporary Fix (Explore Better Host Updater Plugin For Windows)
+    #ToDo: Temporary Fix (Explore Better Host Updater )
     if Vagrant::Util::Platform.windows? then
       puts 'Vagrant On Windows'
       puts '++++++++++++++++++'
@@ -23,7 +23,7 @@ module Orchestrator
     config.vm.provision 'file', source: 'vagrant/keys/public', destination: '~/.ssh/authorized_keys'
   end
 
-  def self.configureVM(env, name, ip, hostname, workspace, playbook, config)
+  def self.configureVM(name, ip, hostname,playbook, config)
     config.vm.define name do |instance|
       instance.vm.hostname = hostname
       instance.vm.network :private_network, ip: ip
@@ -35,33 +35,20 @@ module Orchestrator
         node.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
         node.customize ['modifyvm', :id, '--usb', 'off']
       end
-      case env
-      #:ToDo: Refactor or Remove Web Configuration To make It a Framework
-      when 'web'
-        syncFolderForWeb workspace, instance
-      when 'controller'
-        provisionVM playbook, instance
-      end
+      provisionVM playbook, instance
     end
   end
 
-  def self.syncFolder(workspace, config)
+  def self.syncFolders(syncFolders,config)
     config.vm.synced_folder '.', '/vagrant', disabled: true # Disable shared folders
-    #:ToDo: Fix - Slow Loading of Git Directory
     #:ToDo: Externalize Mount Points To Make It a Better Framework
-
     #config.vm.synced_folder workspace, '/ck', type: "nfs", mount_options: ['ro', 'vers=3', 'tcp', 'fsc']
-    config.vm.synced_folder workspace, '/ck', mount_options: ['dmode=0755,fmode=0644']
-    config.vm.synced_folder "#{workspace}/jumpstart", '/jumpstart', mount_options: ['dmode=0755,fmode=0644']
-    config.vm.synced_folder "#{workspace}/ignitor", '/ignitor'
-    config.vm.synced_folder 'secrets', '/secrets', mount_options: ['dmode=0755,fmode=0644']
-    config.vm.synced_folder 'vagrant/keys', '/keys', mount_options: ['dmode=755,fmode=0400']
-  end
-
-  def self.syncFolderForWeb(ck_workspace, instance)
-    host_path  = "#{ck_workspace}/knowledgecenter/kc-web/src/main/webapp"
-    guest_path = '/usr/share/nginx/knowledgecenter'
-    instance.vm.synced_folder host_path, guest_path
+    #config.vm.synced_folder workspace, '/ck', mount_options: ['dmode=0755,fmode=0644']
+    if syncFolders
+        syncFolders.each do |syncFolder|
+          config.vm.synced_folder syncFolder['host'], syncFolder['guest']
+        end
+    end  
   end
 
   def self.provisionVM(playbook, instance)
@@ -72,7 +59,6 @@ module Orchestrator
       ansible.install_mode = 'default'
       ansible.version = '2.2'
       ansible.playbook = playbook
-      #:ToDo: Externalize as Config
       ansible.provisioning_path = '/ck/jumpstart'
       ansible.tmp_path = '/tmp/vagrant/ansible'
       ansible.raw_arguments  = '--vault-password-file=/secrets/.vault_pass'

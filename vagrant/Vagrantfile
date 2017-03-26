@@ -24,9 +24,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			name = settings[env[node]]["name"]
 			ip = settings[env[node]]["network"]["ip"]
 			hostname = settings[env[node]]["network"]["host"]
-
+			syncFolders = settings[env[node]]["syncFolders"]
+      
 			Orchestrator.createVM os, auto_update, config
-			Orchestrator.syncFolder ck_workspace, config
-			Orchestrator.configureVM env[node],name,ip,hostname, ck_workspace, playbook, config
+			Orchestrator.configureVM name,ip,hostname, playbook, config
+      Orchestrator.syncFolders syncFolders, config
   end
 end
