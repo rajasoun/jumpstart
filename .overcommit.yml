@@ -23,3 +23,9 @@ PreCommit:
 
   YamlSyntax:
     enabled: true
+
+  HardTabs:
+      enabled: true
+
+  RuboCop:
+      enabled: true
