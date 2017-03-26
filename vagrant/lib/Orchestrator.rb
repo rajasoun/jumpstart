@@ -47,6 +47,8 @@ module Orchestrator
 
   def self.syncFolders(syncFolders,config)
     config.vm.synced_folder '.', '/vagrant', disabled: true # Disable shared folders
+    config.vm.synced_folder 'secrets', '/secrets', mount_options: ['dmode=0755,fmode=0644']
+    config.vm.synced_folder 'vagrant/keys', '/keys', mount_options: ['dmode=755,fmode=0400']
     if syncFolders
         syncFolders.each do |syncFolder|
           config.vm.synced_folder syncFolder['host'], syncFolder['guest']

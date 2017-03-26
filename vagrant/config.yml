@@ -24,14 +24,6 @@ vagrant-vm:
     ip: 192.168.24.101
     host: vagrant-vm.dev
   syncFolders :
-    - host: secrets
-      guest: /secrets
-      dmode: 0755
-      fmode: 0644
-    - host: vagrant/keys
-      guest: /keys
-      dmode: 0755
-      fmode: 0644
     - host: vagrant/scripts
       guest: /scripts
     - host: ~/Workspace/ck
