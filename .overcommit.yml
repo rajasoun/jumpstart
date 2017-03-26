@@ -27,5 +27,9 @@ PreCommit:
   HardTabs:
       enabled: true
 
-  RuboCop:
-      enabled: true
+  TrailingWhitespace:
+    enabled: true
+
+  MasterHooksMatch:
+    enabled: true
+    quiet: true
