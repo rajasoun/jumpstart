@@ -35,7 +35,13 @@ module Orchestrator
         node.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
         node.customize ['modifyvm', :id, '--usb', 'off']
       end
-      provisionVM playbook, instance
+
+      #Configure with ansible only through controller vm for the all the vms at once
+      #Coding By Convention than via Configuration
+      case name
+        when 'controller'
+          provisionVM playbook, instance
+      end
     end
   end
 
