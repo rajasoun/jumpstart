@@ -29,7 +29,7 @@
 
 - name: 'Download M/Monit'
   get_url:
-#    checksum: '{{ mmonit_download_checksum }}'
+    checksum: '{{ mmonit_download_checksum }}'
     url: '{{ mmonit_download_url }}'
     dest: '{{ mmonit_workspace }}/mmonit-latest.tar.gz'
   when: mmonit_version != mmonit_current_version
