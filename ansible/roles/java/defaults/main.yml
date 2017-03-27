@@ -13,7 +13,7 @@
 java_version: 8
 java_subversion: 112
 
-java_download_path: /tmp
+java_download_path: /opt
 java_download_from_oracle: true
 java_remove_download: true
 java_install_jce: false
