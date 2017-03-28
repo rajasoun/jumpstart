@@ -2,7 +2,7 @@
 
 mmonit_version: "3.7.0"
 mmonit_download_url: "https://mmonit.com/dist/mmonit-3.7.0-linux-x64.tar.gz"
-mmonit_download_checksum: "sha256:b603bf172d7648a34b5a1d8ad334cf104dd7e2f699fd4ec0a54207eb317d88dd" # Will be used in ansible 2.0+ later
+mmonit_download_checksum: "sha256:ff99efc66f86ee5bb4d4ac76bd036aa2b468d7b7450f6d4324896ff8872639c7" # Will be used in ansible 2.0+ later
 
 
 
