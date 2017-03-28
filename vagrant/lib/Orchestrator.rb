@@ -1,18 +1,51 @@
 module Orchestrator
   def self.installPlugins
-    required_plugins = %w(vagrant-vbguest )
+    required_plugins = %w(vagrant-vbguest)
     #ToDo: Temporary Fix (Explore Better Host Updater )
     if Vagrant::Util::Platform.windows? then
-      puts 'Vagrant On Windows'
-      puts '++++++++++++++++++'
-      puts 'Manually Add Host Entries'
-      puts '192.168.24.101  vagrant-vm.dev to  C:\WINDOWS\system32\drivers\etc\hosts as Admin'
+      winHostsFileUpdateCheck
+      runDosToUnixOnShellFiles
     else # Non Windows - Add Automatic Host Updater
       required_plugins = required_plugins.push("vagrant-hostsupdater")
     end
     required_plugins.each do |plugin|
       system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
     end
+  end
+
+  def self.runDosToUnixOnShellFiles
+    # testList = %x[find . -type f -name '*.sh' -exec dos2unix -ic {} \;]
+    testList = `find . -type f -name '*.sh' -exec dos2unix -ic {} \;`
+    testList.each_line do |line|
+      eval "%x(dos2unix -s #{line})"
+    end
+  end
+
+  def self.winHostsFileUpdateCheck
+      controllerAddedToHosts = false
+      vagrantAddedToHosts = false
+      File.open 'C:\\Windows\\System32\\drivers\\etc\\hosts', mode="r" do |file|
+        file.find do |line|
+            if line =~ /^192\.168\.24.\d{1,3}\ +controller\.dev/ then 
+              controllerAddedToHosts = true
+              puts controllerAddedToHosts
+            end
+            if line =~ /^192\.168\.24.\d{1,3}\ +vagrant-vm\.dev/ then 
+              vagrantAddedToHosts = true
+              puts vagrantAddedToHosts
+            end
+        end
+      end
+
+      if (!controllerAddedToHosts || !vagrantAddedToHosts)
+        puts '++++++++++++++++++++ ++++++++++++++++++++ ++++++++++++++++++++'
+        puts 'On Windows platform:'
+        puts '- ensure C:\Windows\system32\drivers\etc\hosts has following entries'
+        puts '  (you need to edit the file as Admin user to add the entries)'
+        puts '   192.168.24.101  vagrant-vm.dev'
+        puts '   192.168.24.100  controller.dev'
+        puts '++++++++++++++++++++ ++++++++++++++++++++ ++++++++++++++++++++'
+      end 
   end
 
   def self.createVM(os, auto_update, config)
