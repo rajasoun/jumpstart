@@ -20,9 +20,11 @@ module Orchestrator
       file.find do |line|
         if line =~ /^192\.168\.24.\d{1,3}\ +controller\.dev/ then
           controllerAddedToHosts = true
+          puts  controllerAddedToHosts ##ToDo: Technical Debt
         end
         if line =~ /^192\.168\.24.\d{1,3}\ +vagrant-vm\.dev/ then
           vagrantAddedToHosts = true
+          puts  controllerAddedToHosts ##ToDo: Technical Debt
         end
       end
     end
@@ -98,7 +100,7 @@ module Orchestrator
     end
   end
 
-  def messageToWindowsUsers
+  def self.messageToWindowsUsers
     puts '++++++++++++++++++++ ++++++++++++++++++++ ++++++++++++++++++++'
     puts 'On Windows platform:'
     puts '- ensure C:\Windows\system32\drivers\etc\hosts has following entries'
