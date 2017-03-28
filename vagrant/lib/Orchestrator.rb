@@ -13,40 +13,34 @@ module Orchestrator
     end
   end
 
+  def self.winHostsFileUpdateCheck
+    controllerAddedToHosts = false
+    vagrantAddedToHosts = false
+    File.open 'C:\\Windows\\System32\\drivers\\etc\\hosts', mode="r" do |file|
+      file.find do |line|
+        if line =~ /^192\.168\.24.\d{1,3}\ +controller\.dev/ then
+          controllerAddedToHosts = true
+        end
+        if line =~ /^192\.168\.24.\d{1,3}\ +vagrant-vm\.dev/ then
+          vagrantAddedToHosts = true
+        end
+      end
+    end
+
+    if (!controllerAddedToHosts || !vagrantAddedToHosts)
+      messageToWindowsUsers
+    end
+  end
+
   def self.runDosToUnixOnShellFiles
     # testList = %x[find . -type f -name '*.sh' -exec dos2unix -ic {} \;]
-    testList = `find . -type f -name '*.sh' -exec dos2unix -ic {} \;`
-    testList.each_line do |line|
+    scriptList = `find . -type f -name '*.sh' -exec dos2unix -ic {} \;`
+    scriptList.each_line do |line|
       eval "%x(dos2unix -s #{line})"
     end
   end
 
-  def self.winHostsFileUpdateCheck
-      controllerAddedToHosts = false
-      vagrantAddedToHosts = false
-      File.open 'C:\\Windows\\System32\\drivers\\etc\\hosts', mode="r" do |file|
-        file.find do |line|
-            if line =~ /^192\.168\.24.\d{1,3}\ +controller\.dev/ then 
-              controllerAddedToHosts = true
-              puts controllerAddedToHosts
-            end
-            if line =~ /^192\.168\.24.\d{1,3}\ +vagrant-vm\.dev/ then 
-              vagrantAddedToHosts = true
-              puts vagrantAddedToHosts
-            end
-        end
-      end
 
-      if (!controllerAddedToHosts || !vagrantAddedToHosts)
-        puts '++++++++++++++++++++ ++++++++++++++++++++ ++++++++++++++++++++'
-        puts 'On Windows platform:'
-        puts '- ensure C:\Windows\system32\drivers\etc\hosts has following entries'
-        puts '  (you need to edit the file as Admin user to add the entries)'
-        puts '   192.168.24.101  vagrant-vm.dev'
-        puts '   192.168.24.100  controller.dev'
-        puts '++++++++++++++++++++ ++++++++++++++++++++ ++++++++++++++++++++'
-      end 
-  end
 
   def self.createVM(os, auto_update, config)
     config.vm.box = os
@@ -102,5 +96,15 @@ module Orchestrator
       ansible.raw_arguments  = '--vault-password-file=/secrets/.vault_pass'
       ansible.inventory_path = 'ansible/inventory/topology' # "ansible/inventory/vagrant.py"
     end
+  end
+
+  def messageToWindowsUsers
+    puts '++++++++++++++++++++ ++++++++++++++++++++ ++++++++++++++++++++'
+    puts 'On Windows platform:'
+    puts '- ensure C:\Windows\system32\drivers\etc\hosts has following entries'
+    puts '  (you need to edit the file as Admin user to add the entries)'
+    puts '   192.168.24.101  vagrant-vm.dev'
+    puts '   192.168.24.100  controller.dev'
+    puts '++++++++++++++++++++ ++++++++++++++++++++ ++++++++++++++++++++'
   end
 end
