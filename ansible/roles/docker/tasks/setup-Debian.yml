@@ -34,3 +34,12 @@
 - name: Install docker-compose
   pip: name=docker-compose
   tags: docker
+
+- name: Grant /var/run/docker.sock ownership to current user
+  file:
+    path: /var/run/docker.sock
+    owner: vagrant
+    group: vagrant
+    mode: 0777  
+  tags:
+    - docker
