@@ -8,3 +8,11 @@
 - include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
   static: no
+
+- name: Add users to the docker group
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  with_items: "{{docker_group_members}}"
+  when: docker_group_members is defined
