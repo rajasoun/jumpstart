@@ -26,7 +26,7 @@
 
 @test "Check Git Version is 2.12.0" {
     run echo  `git --version` 
-    [ $output = "git version 2.12.0" ]
+    [ $output = "git version 2.12.2" ]
 } 
 
 @test "Check Java is Installed" {
