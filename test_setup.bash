@@ -22,7 +22,7 @@ function tearDown {
 
 setUp
 #bats tests/bats/
-machine_name="vagrant-vm"
+machine_name="ignitor"
 check_status $machine_name
 testinfra -v --host=$machine_name --ansible-inventory=ansible/inventory/vagrant.py --connection=ansible tests/testinfra/
 trap tearDown EXIT

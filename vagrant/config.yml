@@ -2,8 +2,8 @@
 
 playbook: "playbook.yml"
 
-env : ["vagrant-vm", "controller" ]
-#env : ["web","vagrant-vm", "controller" ]
+env : ["ignitor", "controller" ]
+#env : ["web","ignitor", "controller" ]
 
 #ck_workspace: "~/Workspace/ck"
 
@@ -27,10 +27,10 @@ controller:
     ip: 192.168.24.100
     host: controller.dev
 
-vagrant-vm:
-  name : vagrant-vm
+ignitor:
+  name : ignitor
   network:
     ip: 192.168.24.101
-    host: vagrant-vm.dev
+    host: ignitor.dev
 
         
