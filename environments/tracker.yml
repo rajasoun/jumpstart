@@ -1,0 +1,37 @@
+---
+
+java_version: 8
+java_subversion: 102
+ntp_timezone: Asia/Kolkata
+
+
+mmonit_server_ip: '140.174.233.202'
+mmonit_server_hostname: 'tracker.learn.cisco'
+
+mmonit_ip: 10.10.10.3
+monit_webinterface_enabled: true
+monit_webinterface_port: 2812
+monit_webinterface_acl_rules:
+  - "0.0.0.0/0.0.0.0"
+  - "admin:monit"
+  
+monit_services:
+  - name: tracker.learn.cisco
+    type: system
+    rules:
+      - "if loadavg (1min) > 2 then alert"
+      - "if loadavg (5min) > 2 then alert"
+      - "if memory usage > 75% then alert"
+      - "if cpu usage (user) > 70% for 8 cycles then alert"
+      - "if cpu usage (system) > 40% for 8 cycles then alert"
+      - "if cpu usage (wait) > 20%  for 8 cycles then alert"
+
+#  - name: sshd
+#    type: process
+#    target: /var/run/sshd.pid
+#    start: /usr/sbin/service sshd start
+#    stop: /usr/sbin/service sshd stop
+#    rules:
+#        - "if failed port 22 protocol http then restart"
+#        - "if 5 restarts within 5 cycles then timeout"
+        
