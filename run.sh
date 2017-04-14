@@ -6,9 +6,11 @@ ANSIBLE_VAULT_FILE=" --vault-password-file=./secrets/.vault_pass"
 LOG="> run.log 2>&1 &"
 
 
-#vms=(  ckbox tracker )
-vms=(   tracker )
+#vms=(  tracker )
+#roles=( base )
+vms=(   ckbox  tracker )
 roles=( base ntp java maven docker ansible monit mmonit  )
+
 
 for vm in "${vms[@]}"
 do
