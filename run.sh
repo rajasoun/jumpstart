@@ -8,7 +8,7 @@ LOG="> run.log 2>&1 &"
 
 #vms=(  tracker )
 #roles=( base )
-vms=(   ckbox  tracker )
+vms=(   ckbox  )
 roles=( base ntp java maven docker ansible monit mmonit  )
 
 

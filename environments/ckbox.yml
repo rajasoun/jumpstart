@@ -6,7 +6,7 @@ ntp_timezone: Asia/Kolkata
 
 
 mmonit_server_ip: '140.174.231.57'
-mmonit_server_hostname: 'dev.xkit.co'
+mmonit_server_hostname: 'myck.io'
 
 mmonit_ip: 10.10.10.6
 monit_webinterface_enabled: true
