@@ -1,10 +1,8 @@
 ---
+mmonit_version: "3.7.1"
 
-mmonit_version: "3.7.0"
-mmonit_download_url: "https://mmonit.com/dist/mmonit-3.7.0-linux-x64.tar.gz"
-mmonit_download_checksum: "sha256:ff99efc66f86ee5bb4d4ac76bd036aa2b468d7b7450f6d4324896ff8872639c7" # Will be used in ansible 2.0+ later
-
-
+mmonit_download_url: "https://mmonit.com/dist/mmonit-{{ mmonit_version }}-linux-x64.tar.gz"
+mmonit_download_checksum: "sha256:5e020e0effecc2ebd70e8f83f93b3c8f39cd72dd2baeb6ce12f6812831d86eb4" # Will be used in ansible 2.0+ later
 
 mmonit_server_ip: ''
 mmonit_server_hostname: 'localhost'
@@ -31,11 +29,13 @@ mmonit_connectors:
 #mmonit_ansible_username: 'ansible'
 #mmonit_ansible_password: "{{ ansible_machine_id | hash('sha1') | hash('sha1') }}"
 
+
 mmonit_admin_username: 'admin'
 mmonit_admin_password: 'admin'
 
 mmonit_connector_username: 'monit'
 mmonit_connector_password: 'monit'
 
+mmonit_setup_url: ':{{ mmonit_connectors.0.scheme }}://{{ mmonit_server_hostname }}:{{ mmonit_connectors.0.port }}'
 
 #mmonit_ansible_password: "{{ ansible_machine_id | hash('sha1') }}"

@@ -10,7 +10,7 @@ LOG="> run.log 2>&1 &"
 #roles=( base )
 vms=(   ckbox  )
 #roles=( base ntp java maven docker ansible monit mmonit  )
-roles=( monit mmonit  )
+roles=( mmonit  )
 
 
 for vm in "${vms[@]}"

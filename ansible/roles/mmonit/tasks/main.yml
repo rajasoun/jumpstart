@@ -4,3 +4,6 @@
 
 - include: ssl.yml
   tags: ['mmonit-ssl']
+
+- include: configure.yml
+  tags: ['mmonit-configure']
